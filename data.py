@@ -14,12 +14,12 @@ from llama_index.indices.managed.llama_cloud import LlamaCloudIndex
 import tempfile
 
 # Configuration
-LLAMA_CLOUD_API_KEY = "llx-Wc5VegSFgjGa69NE7BdaSKiiWAuGaNYK896UuK0ETVdk5ydM"
+LLAMA_CLOUD_API_KEY = os.getenv("LLAMA_CLOUD_API_KEY")
 
 # Initialize models with caching
 @st.cache_resource
 def initialize_models():
-    llm = Ollama(model="llama3.2:latest", request_timeout=300.0)
+    llm = Ollama(model="deepseek-r1:14b", request_timeout=300.0)
     Settings.llm = llm
     Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
     return llm
@@ -73,12 +73,12 @@ def create_rag_index_from_file(file_path):
         index = LlamaCloudIndex.from_documents(
             documents,
             name=f"city-index-{int(time.time())}",
-            project_name="CityWiki",
+            project_name="<project-name>",
             api_key=LLAMA_CLOUD_API_KEY,
             embedding_config={
                 "type": "HUGGINGFACE_API_EMBEDDING",
                 "component": {
-                    "token": "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",
+                    "token": "<hf_token>",
                     "model_name": "BAAI/bge-small-en-v1.5"
                 }
             },
@@ -115,9 +115,8 @@ def create_agent(sql_engine, rag_engine):
     )
 
 def main():
-    st.title("City Information Assistant")
-    st.write("Ask about US city populations, states, or general information!")
-
+    st.title("RAG-SQL Agent")
+    
     # Set up SQL engine (cached)
     if 'sql_engine' not in st.session_state:
         with st.spinner("Setting up SQL database..."):
@@ -172,7 +171,7 @@ def main():
     #         except Exception as e:
     #             st.error(f"Query failed: {str(e)}")
 
-    query = st.chat_input("Enter your question about US cities:")
+    query = st.chat_input("Enter your question :")
     
     if query and 'agent' in st.session_state:
         with st.chat_message("user"):

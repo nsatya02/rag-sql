@@ -8,7 +8,9 @@ A hybrid AI assistant combining SQL data analysis and RAG document retrieval to 
 - **USE app.py :**
   If you are able to create an index using API then use "app.py". In the code there are all the configurations like which vector database(by default llama),
   embedding model and chunking strategy should be used. You can modify them as per your requirements.
+  
   If it is working for you just run "app.py" automatically the index will be created in llamacloud--> index.
+  
   It worked for me fine for some period of time but later for some unknown reasons i'm unable to create an index using API. 
 
 

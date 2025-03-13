@@ -1,8 +1,6 @@
 # Hybrid RAG & SQL Query Engine🚀
 
-The intelligent query capabilities of your system, seamlessly integrating retrieval-augmented generation (RAG) and Text-to-SQL into a single AI-powered interface.
-
-A hybrid AI assistant combining SQL data analysis and RAG document retrieval to answer for user queries. Built with a modern tech stack, it intelligently routes queries to the appropriate tool (SQL or RAG or both) for accurate and context-aware responses.
+Our AI assistant combines the SQL data analysis and retrieval-augmented generation (RAG) to answer your queries accurately. It intelligently decides whether to pull data from a database, retrieve relevant documents, or use both—giving you the best possible response. Built with a modern tech stack, it ensures seamless and context-aware interactions.
 
 # Index creation(Manually & API)📖🔄
 - **USE app.py :**

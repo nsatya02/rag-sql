@@ -31,8 +31,8 @@ def setup_sql_engine():
         engine = create_engine("sqlite:///:memory:")
         metadata = MetaData()
 
-        city_stats = Table(
-            "city_stats",
+        stats = Table(
+            "sql_stats",
             metadata,
             Column("city_name", String(50), primary_key=True),
             Column("population", Integer),
@@ -42,7 +42,7 @@ def setup_sql_engine():
         metadata.create_all(engine)
 
         with engine.begin() as conn:
-            conn.execute(insert(city_stats), [
+            conn.execute(insert(stats), [
                 {"city_name": "New York City", "population": 8336000, "state": "New York"},
                 {"city_name": "Los Angeles", "population": 3822000, "state": "California"},
                 {"city_name": "Chicago", "population": 2665000, "state": "Illinois"},
@@ -53,7 +53,7 @@ def setup_sql_engine():
 
         return NLSQLTableQueryEngine(
             sql_database=SQLDatabase(engine),
-            tables=["city_stats"],
+            tables=["stats"],
             llm=initialize_models()
         )
     except Exception as e:
@@ -72,7 +72,7 @@ def create_rag_index_from_file(file_path):
 
         index = LlamaCloudIndex.from_documents(
             documents,
-            name=f"city-index-{int(time.time())}",
+            name=f"index-{int(time.time())}",
             project_name="<project-name>",
             api_key=LLAMA_CLOUD_API_KEY,
             embedding_config={
@@ -96,14 +96,15 @@ def create_rag_index_from_file(file_path):
 def create_agent(sql_engine, rag_engine):
     sql_tool = QueryEngineTool.from_defaults(
         query_engine=sql_engine,
-        name="city_stats",
-        description="Numerical data about city populations and states"
+        name="stats",
+        description="""Useful for translating a natural language query into a SQL query over
+        a table containing: stats"""
     )
 
     rag_tool = QueryEngineTool.from_defaults(
         query_engine=rag_engine,
-        name="city_info",
-        description="Historical and cultural city information from documents"
+        name="info",
+        description="Useful for answering semantic questions about the document."
     )
 
     return ReActAgent.from_tools(

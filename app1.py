@@ -9,7 +9,7 @@ from llama_index.core.query_engine import NLSQLTableQueryEngine
 from llama_index.indices.managed.llama_cloud import LlamaCloudIndex
 
 # Configuration
-LLAMA_CLOUD_API_KEY = "llx-SAIQq2ZsLqbfaJkKVG3rU2cKEtfMMvXsS16d2izDD04V7ZZV"
+LLAMA_CLOUD_API_KEY = "API-KEY"
 
 # Initialize models with caching
 @st.cache_resource
@@ -59,9 +59,9 @@ def setup_sql_engine():
 def connect_to_existing_index():
     try:
         index = LlamaCloudIndex(
-            name="instant-peafowl-2025-03-12", 
-            project_name="Default",
-            organization_id="42e5f9c9-3386-4269-980e-dc97f8a27772",
+            name="<index name>", 
+            project_name="<project name>",
+            organization_id="<organization_id>",
             api_key=LLAMA_CLOUD_API_KEY
         )
         return index.as_query_engine()
@@ -75,14 +75,13 @@ def create_agent(sql_engine, rag_engine):
         query_engine=sql_engine,
         name="city_stats",
         description="""Useful for translating a natural language query into a SQL query over
-        a table containing: city_stats, containing the population/state of"
-        each city located in the USA."""
+        a table containing: city_stats"""
     )
 
     rag_tool = QueryEngineTool.from_defaults(
         query_engine=rag_engine,
         name="city_info",
-        description=f"Useful for answering semantic questions about certain cities in the US."
+        description=f"Useful for answering semantic questions about documents."
     )
 
     return ReActAgent.from_tools(
@@ -95,7 +94,6 @@ def create_agent(sql_engine, rag_engine):
 
 def main():
     st.title("City Information Assistant")
-    st.write("Ask about US city populations, states, or general information!")
 
     # Set up SQL engine (cached)
     if 'sql_engine' not in st.session_state:
@@ -118,7 +116,7 @@ def main():
         st.session_state.agent = create_agent(st.session_state.sql_engine, st.session_state.rag_engine)
 
     # User input for queries
-    query = st.chat_input("Enter your question about US cities:")
+    query = st.chat_input("Enter your question to chat:")
     
     if query and 'agent' in st.session_state:
         with st.chat_message("user"):

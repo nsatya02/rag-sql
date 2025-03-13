@@ -1,6 +1,7 @@
 # rag-sql
 
 A custom AI agent that can query either your LlamaCloud index for RAG-based retrieval or a separate SQL query engine as a tool.
+A hybrid AI assistant combining SQL data analysis and RAG document retrieval to answer for user queries. Built with a modern tech stack, it intelligently routes queries to the appropriate tool (SQL or RAG) for accurate and context-aware responses.
 
 ## Features
 
@@ -20,14 +21,7 @@ A custom AI agent that can query either your LlamaCloud index for RAG-based retr
   🦙 Ollama LLM integration  
   🤗 Hugging Face embeddings  
   ☁️ LlamaCloud indexing
-
-## Installation
-
-1. **Clone Repository**
-```bash
-git clone https://github.com/yourusername/city-info-assistant.git
-cd city-info-assistant
-
+  
 # Tech Stack 🛠️
 Python (Streamlit, SQLAlchemy)
 LlamaIndex (RAG, LLM agent)
@@ -37,4 +31,12 @@ SQLite (in-memory database)
 ## Workflow 
 
 ![image](https://github.com/user-attachments/assets/3ef25349-a42a-4f95-94ed-c5684eae4e27)
+
+## Installation
+
+1. **Clone Repository**
+```bash
+git clone https://github.com/yourusername/city-info-assistant.git
+cd city-info-assistant
+
 

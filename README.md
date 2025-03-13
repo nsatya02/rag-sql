@@ -12,7 +12,7 @@ A hybrid AI assistant combining SQL data analysis and RAG document retrieval to 
   It worked for me fine for some period of time but later for some unknown reasons i'm unable to create an index using API. 
 
 
--**USE app1.py :**
+- **USE app1.py :**
   If you are unable to create index using API. By following the below steps you can create it manually :
   1. Open llamacloud.
   2. Go to indexes.

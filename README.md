@@ -2,7 +2,7 @@
 
 The intelligent query capabilities of your system, seamlessly integrating retrieval-augmented generation (RAG) and Text-to-SQL into a single AI-powered interface.
 
-A hybrid AI assistant combining SQL data analysis and RAG document retrieval to answer for user queries. Built with a modern tech stack, it intelligently routes queries to the appropriate tool (SQL or RAG) for accurate and context-aware responses.
+A hybrid AI assistant combining SQL data analysis and RAG document retrieval to answer for user queries. Built with a modern tech stack, it intelligently routes queries to the appropriate tool (SQL or RAG or both) for accurate and context-aware responses.
 
 # Index creation(Manually & API)📖🔄
 - **USE app.py :**
@@ -25,7 +25,7 @@ A hybrid AI assistant combining SQL data analysis and RAG document retrieval to 
   7. Transform settings----> choouse your chunking strategy(Auto/Manual).
   8. click deploy index.
 
-Then copy the index endpoint details and use them in the code.
+**Then copy the index endpoint details and use them in the code.**
 
 ## Installation and setup⚙️
 

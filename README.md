@@ -2,9 +2,11 @@
 
 Our AI assistant combines the SQL data analysis and retrieval-augmented generation (RAG) to answer your queries accurately. It intelligently decides whether to pull data from a database, retrieve relevant documents, or use both—giving you the best possible response. Built with a modern tech stack, it ensures seamless and context-aware interactions.
 
-# DEMO
+# DEMO & BLOG post in X
 
 Find the demo video here : [demo](https://drive.google.com/file/d/1OPKVazxFMf5fUXqq-ezaP9kSew0bpxS1/view?usp=sharing)
+
+Find the Blog Post here: [blog](https://x.com/SNarasala3507/status/1900485504044544317)
 # Index creation(Manually & API)📖🔄
 - **USE app.py :**
   If you are able to create an index using API then use "app.py". In the code there are all the configurations like which vector database(by default llama),
